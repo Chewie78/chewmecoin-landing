@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChewMeCoin ($CHEW)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(135deg, #111, #220022);
+      color: #00ff99;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px #00ff99;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+    }
+    p {
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+    button {
+      background-color: #00ff99;
+      border: none;
+      color: #000;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #00cc77;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://gateway.pinata.cloud/ipfs/bafkreifmyh4mdoxq3ya5hw27loxfrsbojbtwj5ubs7btd7g4o6zeufswzi" alt="CHEW Token Logo" />
+  <h1>ChewMeCoin ($CHEW)</h1>
+  <p>
+    Der Meme-Coin mit Biss. Inspiriert von Retro-Vibes, Wookiee-Legenden und einer ordentlichen Portion Chaos im Krypto-Dschungel.
+  </p>
+  <button onclick="addToken()">$CHEW zu MetaMask hinzufügen</button>
+
+  <script>
+    async function addToken() {
+      if (typeof window.ethereum === 'undefined') {
+        alert('MetaMask ist nicht installiert oder verfügbar.');
+        return;
+      }
+
+      try {
+        const wasAdded = await window.ethereum.request({
+          method: 'wallet_watchAsset',
+          params: {
+            type: 'ERC20',
+            options: {
+              address: 'DEINE_CONTRACT_ADRESSE_HIER',
+              symbol: 'CHEW',
+              decimals: 18,
+              image: 'https://gateway.pinata.cloud/ipfs/bafkreifmyh4mdoxq3ya5hw27loxfrsbojbtwj5ubs7btd7g4o6zeufswzi',
+            },
+          },
+        });
+
+        if (wasAdded) {
+          alert('CHEW wurde zu MetaMask hinzugefügt!');
+        } else {
+          alert('CHEW wurde nicht hinzugefügt.');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Fehler beim Hinzufügen des Tokens.');
+      }
+    }
+  </script>
+</body>
+</html>
